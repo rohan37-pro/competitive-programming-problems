@@ -1,0 +1,67 @@
+Problem Statement for MaximumLottery
+
+
+Problem Statement
+    	
+A new lottery works as follows:
+
+There is an urn containing some balls. On each ball there is one positive integer: a prize associated with the ball. (Different balls may have the same integer on them.) You are given these prizes in the int[] balls.
+
+When playing the lottery, the player selects exactly K balls from the urn uniformly at random. The player wins the largest of the K amounts written on the selected balls. For example, drawing balls with $20, $47 and $33 written on them would give you $47.
+
+
+
+The company running this lottery has an important question: what is the worth of a ticket that allows its owner to play the lottery once? If they sell them too cheap, they will (on average) lose money each time someone plays the lottery.
+
+Calculate and return the smallest positive real number X such that if the company sells tickets for X, they aren't expected to lose money. (More precisely, the expected profit from selling someone a ticket and letting them play the lottery cannot be negative.)
+
+ 
+Definition
+    	
+Class:	MaximumLottery
+Method:	ticketPrice
+Parameters:	int[], int
+Returns:	double
+Method signature:	double ticketPrice(int[] balls, int K)
+(be sure your method is public)
+    
+ 
+Notes
+-	Your return value must have an absolute or a relative error at most 1e-9.
+-	The phrase "the player selects exactly K balls from the urn uniformly at random" means that each set of K balls has the same probability of being selected. (One way in which this can be achieved is simply by drawing a random ball K times in a row, without replacement.)
+ 
+Constraints
+-	balls will have between 1 and 50 elements, inclusive.
+-	Each element of balls will be between 1 and 10^6, inclusive.
+-	K will be between 1 and the number of elements in balls, inclusive.
+ 
+Examples
+0)	
+    	
+{10, 10, 10, 10, 10, 10, 10}
+3
+Returns: 10.0
+Regardless of what three balls you select, the largest prize will always be $10. If you sell tickets cheaper, you will lose money. The smallest ticket price at which the company won't be losing money is clearly $10.
+1)	
+    	
+{10, 50, 40, 20, 30}
+5
+Returns: 50.0
+The player will draw all five balls and win $50.
+2)	
+    	
+{11, 12, 13, 14}
+3
+Returns: 13.75
+On average, one out of four games ends with the player winning $13 and the remaining three end with the player winning $14.
+3)	
+    	
+{11, 12, 13, 14, 15, 16, 18}
+1
+Returns: 14.142857142857142
+With just a single ball drawn from the urn, whatever prize you draw you get.
+4)	
+    	
+{1, 1, 2, 3, 5, 8, 13, 21}
+4
+Returns: 15.685714285714285
