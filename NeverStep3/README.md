@@ -33,18 +33,21 @@ Examples
 2
 Returns: 6
 All six paths from (0, 0) to (2, 2) are valid.
+
 1)	
     	
 3
 3
 Returns: 14
 Using 'N' for a step north and 'E' for a step east, the valid paths include "NENENE" and "EENENN" while the invalid paths include "NNNEEE" and "ENNNEE".
+
 2)	
     	
 0
 7
 Returns: 1
 The only valid path consists of seven consecutive steps north. Seven is not three, so this is a valid path.
+
 3)	
     	
 10
