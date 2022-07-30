@@ -11,21 +11,21 @@ class permutate:
 		self.permutation_list = []
 		#formula of permutaion
 		possible_combination = self.apply_formula()
-		#print(f"possible_combination : {possible_combination}")
 
+		#generating the permutation list
 		for i in range(possible_combination):
+			#generate a random combination
 			self.generate_random_list()
-			#print(f"temp_random_list : {self.temp_random_list}")
 			if i!=0:
+				#check if the generated random list is in the permutation list or not
 				while self.check_list_in_2Dlist():
-					#print(f"{self.temp_random_list} is in {self.permutation_list}")
 					self.generate_random_list()
 			self.permutation_list.append(self.temp_random_list)
 
-		#print(f"permutation_list - {self.permutation_list}")
+		#return the final permutation list
 		return self.permutation_list
 
-
+	#to find the factorial of a number
 	def factorial(self, num):
 		fact = 1
 		for i in range(1,num+1):
@@ -34,45 +34,48 @@ class permutate:
 		return fact
 
 
+	#function to generate a random list
 	def generate_random_list(self):
 		temp_index_list = []
 		for i in range(self.r):
+			#a random number to generate random list
 			temp_random = random.randint(0, self.length_of_string-1)
+			#checking if the random number is already in the list or not
 			while temp_random in temp_index_list:
 				temp_random = random.randint(0, self.length_of_string-1)
 			temp_index_list.append(temp_random)
 
+		#append the values according to the generated random list
 		self.temp_random_list = []
 		for i in range(self.r):
 			self.temp_random_list.append(self.string[temp_index_list[i]])
-		#print(f"temp_random_list = {self.temp_random_list}")
 
 
+	#function to check the random list is already in the permutation list or not
 	def check_list_in_2Dlist(self):
 		check_list = []
-		#print(f"checking list \n{self.temp_random_list} \nin list \n{self.permutation_list}")
 		for i in range(len(self.permutation_list)):
 			check = 1
 			for j in range(self.r):
-				#print(f"self.permutation_list[{i}] - {self.permutation_list[i]}")
-				#print(f"self.permutation_list[{i}][{j}] - {self.permutation_list[i][j]}")
+				#comparing individual values
 				if self.permutation_list[i][j] == self.temp_random_list[j]:
 					check = check and 1
 				else:
 					check = check and 0
-					#print(f"{self.permutation_list[i][j]} and {self.temp_random_list[j]} didn't match, ",end=' ')
 			check_list.append(check)
-			#print("")
 
 		check = 0
 		for i in check_list:
 			check = check or i
 
-		#print(f"check result - {check}\n")
 		return check
 
+
+	#a function that will return the total number of possible permutations.
 	def apply_formula(self):
+		#formula of permutation
 		comb = int(self.factorial(self.length_of_string)/self.factorial(self.length_of_string - self.r))
+		#formula of permutation for multiple occurance of same character
 		string_dic = {}
 		for i in self.string:
 			string_dic[i] = self.string.count(i)
