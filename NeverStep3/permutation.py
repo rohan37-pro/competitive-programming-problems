@@ -11,6 +11,7 @@ class permutate:
 		self.permutation_list = []
 		#formula of permutaion
 		possible_combination = self.apply_formula()
+		#print(f"possible_combination : {possible_combination}")
 
 		for i in range(possible_combination):
 			self.generate_random_list()
@@ -21,6 +22,7 @@ class permutate:
 					self.generate_random_list()
 			self.permutation_list.append(self.temp_random_list)
 
+		#print(f"permutation_list - {self.permutation_list}")
 		return self.permutation_list
 
 
@@ -47,25 +49,37 @@ class permutate:
 
 
 	def check_list_in_2Dlist(self):
-		check = 1
+		check_list = []
+		#print(f"checking list \n{self.temp_random_list} \nin list \n{self.permutation_list}")
 		for i in range(len(self.permutation_list)):
+			check = 1
 			for j in range(self.r):
+				#print(f"self.permutation_list[{i}] - {self.permutation_list[i]}")
+				#print(f"self.permutation_list[{i}][{j}] - {self.permutation_list[i][j]}")
 				if self.permutation_list[i][j] == self.temp_random_list[j]:
 					check = check and 1
 				else:
 					check = check and 0
+					#print(f"{self.permutation_list[i][j]} and {self.temp_random_list[j]} didn't match, ",end=' ')
+			check_list.append(check)
+			#print("")
 
+		check = 0
+		for i in check_list:
+			check = check or i
+
+		#print(f"check result - {check}\n")
 		return check
 
 	def apply_formula(self):
-		possible_combination = int(self.factorial(self.length_of_string)/self.factorial(self.length_of_string - self.r))
+		comb = int(self.factorial(self.length_of_string)/self.factorial(self.length_of_string - self.r))
 		string_dic = {}
 		for i in self.string:
 			string_dic[i] = self.string.count(i)
 		for i in string_dic:
-			possible_combination /= self.factorial(string_dic[i])
+			comb /= self.factorial(string_dic[i])
 
-		return int(possible_combination)
+		return int(comb)
 
 '''
 if __name__ == "__main__":

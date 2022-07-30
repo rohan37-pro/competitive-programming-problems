@@ -19,7 +19,7 @@ def path_count(x, y):
 		else:
 			total_possible_path.append(i)
 
-	print(f"total_possible_path are {total_possible_path}")
+	#print(f"total_possible_path are {total_possible_path}")
 	for path in total_possible_path:
 		E_count = 0
 		N_count = 0
